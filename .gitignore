@@ -1,0 +1,12 @@
+bin/
+obj/
+plan/
+Personal Budget.*
+users.xml
+incomes.xml
+expenses.xml
+HEAD
+config
+description
+hooks/
+info/
