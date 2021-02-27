@@ -28,6 +28,9 @@ public:
         walletManager = NULL;
     };
     */
+    void registerUser();
+    void loginUser();
+
     void addIncome();
     void addExpense();
     void showBalanceForCurrentMonth();

@@ -1,7 +1,13 @@
 #include "UserManager.h"
 
 void UserManager::registerUser() {
+    User user = getNewUserData();
 
+    users.push_back(user);
+    fileWithUsers.addUserToFile(user);
+
+    cout << endl << "Konto zalozono pomyslnie" << endl << endl;
+    system("pause");
 }
 
 void UserManager::loginUser() {
@@ -25,7 +31,24 @@ int UserManager::getLoggedInUserId() {
 }
 
 User UserManager::getNewUserData() {
+    User user;
 
+    user.setId(getNewUserId());
+
+    string login;
+    do
+    {
+        cout << "Podaj login: ";
+        cin >> login;
+        user.setLogin(login);
+    } while (isThereALoginExising(user.getLogin()) == true);
+
+    string password;
+    cout << "Podaj haslo: ";
+    cin >> password;
+    user.setPassword(password);
+
+    return user;
 }
 
 int UserManager::getNewUserId() {
