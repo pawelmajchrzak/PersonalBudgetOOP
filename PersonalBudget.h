@@ -43,6 +43,7 @@ public:
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();
 
+    void showAllUsers();
 };
 
 #endif // PersonalBudget_h

@@ -20,7 +20,7 @@ class UserManager {
 
     User getNewUserData();
     int getNewUserId();
-    bool isThereALoginExising();
+    bool isThereALoginExisting(string login);
 
 public:
 
@@ -34,6 +34,8 @@ public:
     void logoutUser();
     bool isUserLoggedIn();
     int getLoggedInUserId();
+
+    void showAllUsers();
 };
 
 #endif // UserManager_h
