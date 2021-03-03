@@ -16,7 +16,7 @@ using namespace std;
 class UserManager {
     int loggedInUserId;
     vector <User> users;
-    //FileWithUsers fileWithUsers;
+    FileWithUsers fileWithUsers;
 
     User getNewUserData();
     int getNewUserId();
