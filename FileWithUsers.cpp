@@ -22,30 +22,6 @@ void FileWithUsers::addUserToFile(User user)
     xml.AddElem("surname", user.getSurname());
 
     xml.Save("users.xml");
-
-
-    /*
-    fstream plikTekstowy;
-    string liniaZDanymiUzytkownika = "";
-    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
-
-    if (plikTekstowy.good() == true)
-    {
-        liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
-
-        if (czyPlikJestPusty() == true)
-        {
-            plikTekstowy << liniaZDanymiUzytkownika;
-        }
-        else
-        {
-            plikTekstowy << endl << liniaZDanymiUzytkownika ;
-        }
-    }
-    else
-        cout << "Nie udalo sie otworzyc pliku " << pobierzNazwePliku() << " i zapisac w nim danych." << endl;
-    plikTekstowy.close();
-    */
 }
 
 vector <User>  FileWithUsers::loadUsersFromFile() {
@@ -77,4 +53,27 @@ vector <User>  FileWithUsers::loadUsersFromFile() {
         users.push_back(user);
     }
     return users;
+}
+
+void FileWithUsers::saveChangesToFileXML(int userNumber, string newPassword) {
+    CMarkup xml;
+
+    bool fileExists = xml.Load( "users.xml" );
+
+    if (!fileExists) {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem("Users");
+    }
+    xml.ResetPos();
+    xml.FindElem();
+    xml.IntoElem();
+    for (int i=0; i<=userNumber; i++)
+        xml.FindElem();
+    xml.IntoElem();
+    xml.FindElem();
+    xml.FindElem();
+    xml.FindElem();
+    xml.SetData(newPassword);
+    cout << xml.GetData() << "ej to ja" << endl;
+    xml.Save("users.xml");
 }

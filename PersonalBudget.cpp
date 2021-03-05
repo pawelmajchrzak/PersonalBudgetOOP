@@ -15,6 +15,11 @@ void PersonalBudget::loginUser() {
 
 }
 
+void PersonalBudget::changePassword()
+{
+    userManager.changePassword();
+}
+
 
 void PersonalBudget::showAllUsers() {
     userManager.showAllUsers();

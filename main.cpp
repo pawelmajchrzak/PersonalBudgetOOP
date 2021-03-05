@@ -11,7 +11,7 @@ int main()
 
     //personalBudget.registerUser();
     personalBudget.loginUser();
-
+    personalBudget.changePassword();
     personalBudget.showAllUsers();
 
 

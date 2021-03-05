@@ -17,6 +17,7 @@ public:
     //FileWithUsers(string nameFileWithUsers) : FileXML(nameFileWithUsers) {};
     void addUserToFile(User user);
     vector <User> loadUsersFromFile();
+    void saveChangesToFileXML(int userNumber, string newPassword);
 };
 
 #endif // FileWithUsers_h
