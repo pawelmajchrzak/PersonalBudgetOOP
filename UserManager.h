@@ -24,6 +24,7 @@ class UserManager {
 
 public:
     UserManager() {
+    loggedInUserId = 0;
     users = fileWithUsers.loadUsersFromFile();
     };
     //UserManager (string filenameWithUsers) : fileWithUsers(filenameWithUsers) {

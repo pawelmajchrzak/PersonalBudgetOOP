@@ -19,6 +19,10 @@ class PersonalBudget
 
 public:
 
+    PersonalBudget()
+    : loggedInUserId(0) {
+
+    }
     /*
     PersonalBudget(string fileNameWithUsers, string fileNameWithIncomes, string fileNameWithExpenses)
     : userManager(nameFileWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes), FILE_NAME_WITH_EXPENSES(fileNameWithExpenses), loggedInUserId(0) {
@@ -40,6 +44,7 @@ public:
     void changePassword();
     void logoutUser();
     bool isUserLoggedIn();
+    int getLoggedInUserId();
 
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();

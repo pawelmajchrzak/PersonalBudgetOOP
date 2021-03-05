@@ -57,11 +57,14 @@ void UserManager::changePassword() {
 }
 
 void UserManager::logoutUser() {
-
+    loggedInUserId = 0;
 }
 
 bool UserManager::isUserLoggedIn() {
-
+    if (loggedInUserId > 0)
+        return true;
+    else
+        return false;
 }
 
 int UserManager::getLoggedInUserId() {
