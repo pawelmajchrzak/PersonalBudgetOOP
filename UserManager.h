@@ -20,20 +20,25 @@ class UserManager {
 
     User getNewUserData();
     int getNewUserId();
-    bool isThereALoginExising();
+    bool isThereALoginExisting(string login);
 
 public:
-
-    UserManager (string filenameWithUsers) : fileWithUsers(filenameWithUsers) {
-        loggedInUserId = 0;
-        users = filenameWithUsers.loadUsersFromFile();
+    UserManager() {
+    loggedInUserId = 0;
+    users = fileWithUsers.loadUsersFromFile();
     };
+    //UserManager (string filenameWithUsers) : fileWithUsers(filenameWithUsers) {
+    //    loggedInUserId = 0;
+    //    users = filenameWithUsers.loadUsersFromFile();
+    //};
     void registerUser();
     void loginUser();
     void changePassword();
     void logoutUser();
     bool isUserLoggedIn();
     int getLoggedInUserId();
+
+    void showAllUsers();
 };
 
 #endif // UserManager_h
