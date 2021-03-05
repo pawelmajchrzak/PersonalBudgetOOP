@@ -7,14 +7,16 @@
 #include "User.h"
 #include "AuxiliaryMethods.h"
 #include "Markup.h"
-//#include "PlikTekstowy.h"
+#include "FileXML.h"
 
 using namespace std;
 
-class FileWithUsers //: public PlikTekstowy
+class FileWithUsers //: public FileXML
 {
 public:
+    //FileWithUsers(string nameFileWithUsers) : FileXML(nameFileWithUsers) {};
     void addUserToFile(User user);
+    vector <User> loadUsersFromFile();
 };
 
 #endif // FileWithUsers_h

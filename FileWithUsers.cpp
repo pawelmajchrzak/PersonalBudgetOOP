@@ -6,8 +6,7 @@ void FileWithUsers::addUserToFile(User user)
 
     bool fileExists = xml.Load( "users.xml" );
 
-    if (!fileExists)
-    {
+    if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -47,4 +46,35 @@ void FileWithUsers::addUserToFile(User user)
         cout << "Nie udalo sie otworzyc pliku " << pobierzNazwePliku() << " i zapisac w nim danych." << endl;
     plikTekstowy.close();
     */
+}
+
+vector <User>  FileWithUsers::loadUsersFromFile() {
+    User user;
+    vector <User> users;
+    CMarkup xml;
+    bool fileExists = xml.Load( "users.xml" );
+    if (!fileExists) {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem("Users");
+    }
+
+    xml.ResetPos();
+    xml.FindElem();
+    xml.IntoElem();
+    while (xml.FindElem()) {
+        xml.IntoElem();
+        xml.FindElem();
+        user.setId(AuxiliaryMethods::convertStringToInteger(xml.GetData()));
+        xml.FindElem();
+        user.setLogin(xml.GetData());
+        xml.FindElem();
+        user.setPassword(xml.GetData());
+        xml.FindElem();
+        user.setName(xml.GetData());
+        xml.FindElem();
+        user.setSurname(xml.GetData());
+        xml.OutOfElem();
+        users.push_back(user);
+    }
+    return users;
 }

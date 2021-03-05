@@ -11,7 +11,32 @@ void UserManager::registerUser() {
 }
 
 void UserManager::loginUser() {
+    string login = "", password = "";
 
+    cout << "Podaj login: ";
+    login = AuxiliaryMethods::loadLine();
+
+    for (int i = 0 ; i< users.size(); i++) {
+        if (users[i].getLogin() == login) {
+            for (int attemptsNumber = 3; attemptsNumber > 0; attemptsNumber--) {
+                cout << "Podaj haslo. Pozostalo prob: " << attemptsNumber << ": ";
+                password = AuxiliaryMethods::loadLine();
+
+                if (users[i].getPassword() == password) {
+                    loggedInUserId = users[i].getId();
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    system("pause");
+                    return;
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return;
+        }
+    }
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+    return;
 }
 
 void UserManager::changePassword() {

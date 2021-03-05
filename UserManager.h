@@ -23,7 +23,9 @@ class UserManager {
     bool isThereALoginExisting(string login);
 
 public:
-
+    UserManager() {
+    users = fileWithUsers.loadUsersFromFile();
+    };
     //UserManager (string filenameWithUsers) : fileWithUsers(filenameWithUsers) {
     //    loggedInUserId = 0;
     //    users = filenameWithUsers.loadUsersFromFile();

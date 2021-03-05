@@ -18,6 +18,7 @@ class PersonalBudget
     int loggedInUserId;
 
 public:
+
     /*
     PersonalBudget(string fileNameWithUsers, string fileNameWithIncomes, string fileNameWithExpenses)
     : userManager(nameFileWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes), FILE_NAME_WITH_EXPENSES(fileNameWithExpenses), loggedInUserId(0) {

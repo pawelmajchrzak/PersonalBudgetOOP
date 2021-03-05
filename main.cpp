@@ -9,8 +9,8 @@ int main()
     //PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
     PersonalBudget personalBudget;
 
-    personalBudget.registerUser();
-    //personalBudget.loginUser();
+    //personalBudget.registerUser();
+    personalBudget.loginUser();
 
     personalBudget.showAllUsers();
 
