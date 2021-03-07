@@ -7,12 +7,25 @@ string AuxiliaryMethods::convertIntegerToString(int number) {
     return str;
 }
 
+string AuxiliaryMethods::convertFloatToString(float number) {
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
 int AuxiliaryMethods::convertStringToInteger(string number) {
     int numberInt;
     istringstream iss(number);
     iss >> numberInt;
 
     return numberInt;
+}
+
+float AuxiliaryMethods::convertStringToFloat(string number) {
+    float numberFloat;
+    numberFloat = atof(number.c_str());
+    return numberFloat;
 }
 
 string AuxiliaryMethods::changeFirstLetterForUpperCaseAndOthersForLowerCase(string text) {

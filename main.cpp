@@ -6,6 +6,15 @@ using namespace std;
 
 int main()
 {
+    PersonalBudget personalBudget;
+    personalBudget.loginUser();
+    //personalBudget.addIncome();
+    personalBudget.addExpense();
+}
+
+
+int maink()
+{
     //PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
     PersonalBudget personalBudget;
 

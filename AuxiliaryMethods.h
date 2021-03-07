@@ -16,7 +16,9 @@ class AuxiliaryMethods
 
 public:
     static string convertIntegerToString(int number);
+    static string convertFloatToString(float number);
     static int convertStringToInteger(string number);
+    static float convertStringToFloat(string number);
     static string changeFirstLetterForUpperCaseAndOthersForLowerCase(string text);
     static char loadChar();
     static int loadInteger();

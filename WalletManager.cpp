@@ -3,7 +3,7 @@
 void WalletManager::addIncome() {
     Income income = getNewIncomeData();
     incomes.push_back(income);
-    //fileWithIncomes.addIncomeToFile(income);
+    fileWithIncomes.addIncomeToFile(income);
 
     cout << endl << "Przychod zostal dodany pomyslnie!" << endl << endl;
     system ("pause");
@@ -12,7 +12,7 @@ void WalletManager::addIncome() {
 void WalletManager::addExpense() {
     Expense expense = getNewExpenseData();
     expenses.push_back(expense);
-    //fileWithExpenses.addExpenseToFile(expense);
+    fileWithExpenses.addExpenseToFile(expense);
 
     cout << endl << "Wydatek zostal dodany pomyslnie!" << endl << endl;
     system ("pause");
@@ -74,14 +74,14 @@ int WalletManager::getNewIncomeId() {
     if (incomes.empty() == true)
         return 1;
     else
-        return incomes.back().getIncomeId() + 1;
+        return fileWithIncomes.getLastIncomeId() + 1;
 }
 
 int WalletManager::getNewExpenseId() {
     if (expenses.empty() == true)
         return 1;
     else
-        return expenses.back().getExpenseId() + 1;
+        return fileWithExpenses.getLastExpenseId() + 1;
 }
 
 int WalletManager::getUserId() {

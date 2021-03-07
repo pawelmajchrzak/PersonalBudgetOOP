@@ -10,13 +10,12 @@ void PersonalBudget::loginUser() {
     userManager.loginUser();
 
     if (userManager.isUserLoggedIn()) {
-        //walletManager = new WalletManager(FILE_NAME_WITH_INCOMES,userManager.getIdLoggedUser());
+        walletManager = new WalletManager(FILE_NAME_WITH_INCOMES,FILE_NAME_WITH_EXPENSES,userManager.getLoggedInUserId());
     }
 
 }
 
-void PersonalBudget::changePassword()
-{
+void PersonalBudget::changePassword() {
     userManager.changePassword();
 }
 
@@ -26,14 +25,12 @@ void PersonalBudget::logoutUser() {
     //walletManager = NULL;
 }
 
-int PersonalBudget::getLoggedInUserId()
-{
+int PersonalBudget::getLoggedInUserId() {
     loggedInUserId = userManager.getLoggedInUserId();
     return loggedInUserId;
 }
 
-char PersonalBudget::selectOptionFromMainMenu()
-{
+char PersonalBudget::selectOptionFromMainMenu() {
     char select;
 
     system("cls");
@@ -49,8 +46,7 @@ char PersonalBudget::selectOptionFromMainMenu()
     return select;
 }
 
-char PersonalBudget::selectOptionFromUserMenu()
-{
+char PersonalBudget::selectOptionFromUserMenu() {
     char select;
 
     system("cls");
@@ -72,7 +68,23 @@ char PersonalBudget::selectOptionFromUserMenu()
     return select;
 }
 
+void PersonalBudget::addIncome() {
+    if (userManager.isUserLoggedIn()) {
+        walletManager->addIncome();
+    } else {
+        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac" << endl;
+        system ("pause");
+    }
+}
 
+void PersonalBudget::addExpense() {
+    if (userManager.isUserLoggedIn()) {
+        walletManager->addExpense();
+    } else {
+        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac" << endl;
+        system ("pause");
+    }
+}
 
 
 void PersonalBudget::showAllUsers() {
