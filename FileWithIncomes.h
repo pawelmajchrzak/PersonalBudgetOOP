@@ -11,11 +11,13 @@
 
 using namespace std;
 
-class FileWithIncomes //: public FileXML
+class FileWithIncomes : public FileXML
 {
     int lastIncomeId;
 public:
-    //FileWithUsers(string nameFileWithUsers) : FileXML(nameFileWithUsers) {};
+    FileWithIncomes(string nameFileWithIncomes) : FileXML(nameFileWithIncomes) {
+    lastIncomeId = 0;
+    };
     void addIncomeToFile(Income income);
     vector <Income> loadIncomesOfLoggedInUserFromFile(int loggedInUserId);
     int getLastIncomeId();

@@ -21,14 +21,12 @@ class WalletManager {
 
     Income getNewIncomeData();
     Expense getNewExpenseData();
-    int getNewIncomeId();
-    int getNewExpenseId();
     int getUserId();
     int setDate();
 
 public:
     WalletManager(string nameFileWithIncomes, string nameFileWithExpenses, int loggedInUserId)
-        : //fileWithIncomes(nameFileWithIncomes), fileWithExpenses(nameFileWithExpenses),
+        : fileWithIncomes(nameFileWithIncomes), fileWithExpenses(nameFileWithExpenses),
         LOGGED_IN_USER_ID(loggedInUserId)
     {
         incomes = fileWithIncomes.loadIncomesOfLoggedInUserFromFile(LOGGED_IN_USER_ID);

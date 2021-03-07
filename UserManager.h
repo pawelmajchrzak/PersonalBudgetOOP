@@ -20,14 +20,16 @@ class UserManager {
     bool isThereALoginExisting(string login);
 
 public:
+    /*
     UserManager() {
     loggedInUserId = 0;
     users = fileWithUsers.loadUsersFromFile();
     };
-    //UserManager (string filenameWithUsers) : fileWithUsers(filenameWithUsers) {
-    //    loggedInUserId = 0;
-    //    users = filenameWithUsers.loadUsersFromFile();
-    //};
+    */
+    UserManager (string filenameWithUsers) : fileWithUsers(filenameWithUsers) {
+        loggedInUserId = 0;
+        users = fileWithUsers.loadUsersFromFile();
+    };
     void registerUser();
     void loginUser();
     void changePassword();

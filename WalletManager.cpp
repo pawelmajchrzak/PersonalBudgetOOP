@@ -32,8 +32,7 @@ void WalletManager::showBalanceInSelectedPeriod() {
 
 Income WalletManager::getNewIncomeData() {
     Income income;
-
-    income.setIncomeId(getNewIncomeId());
+    income.setIncomeId(fileWithIncomes.getLastIncomeId()+1);
     income.setUserId(LOGGED_IN_USER_ID);
     income.setDate(setDate());
 
@@ -53,7 +52,7 @@ Income WalletManager::getNewIncomeData() {
 Expense WalletManager::getNewExpenseData() {
     Expense expense;
 
-    expense.setExpenseId(getNewExpenseId());
+    expense.setExpenseId(fileWithExpenses.getLastExpenseId()+1);
     expense.setUserId(LOGGED_IN_USER_ID);
     expense.setDate(setDate());
 
@@ -68,20 +67,6 @@ Expense WalletManager::getNewExpenseData() {
     expense.setAmount(amount);
 
     return expense;
-}
-
-int WalletManager::getNewIncomeId() {
-    if (incomes.empty() == true)
-        return 1;
-    else
-        return fileWithIncomes.getLastIncomeId() + 1;
-}
-
-int WalletManager::getNewExpenseId() {
-    if (expenses.empty() == true)
-        return 1;
-    else
-        return fileWithExpenses.getLastExpenseId() + 1;
 }
 
 int WalletManager::getUserId() {

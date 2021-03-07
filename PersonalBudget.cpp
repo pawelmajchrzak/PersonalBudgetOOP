@@ -21,8 +21,8 @@ void PersonalBudget::changePassword() {
 
 void PersonalBudget::logoutUser() {
     userManager.logoutUser();
-    //delete walletManager;
-    //walletManager = NULL;
+    delete walletManager;
+    walletManager = NULL;
 }
 
 int PersonalBudget::getLoggedInUserId() {

@@ -18,17 +18,17 @@ class PersonalBudget
     int loggedInUserId;
 
 public:
-
+    /*
     PersonalBudget()
     : loggedInUserId(0) {
     walletManager = NULL;
     }
-    /*
+    */
     PersonalBudget(string fileNameWithUsers, string fileNameWithIncomes, string fileNameWithExpenses)
-    : userManager(nameFileWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes), FILE_NAME_WITH_EXPENSES(fileNameWithExpenses), loggedInUserId(0) {
+    : userManager(fileNameWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes), FILE_NAME_WITH_EXPENSES(fileNameWithExpenses), loggedInUserId(0) {
     walletManager = NULL;
     };
-    */
+
     ~PersonalBudget() {
         delete walletManager;
         walletManager = NULL;

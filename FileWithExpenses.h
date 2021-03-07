@@ -11,11 +11,13 @@
 
 using namespace std;
 
-class FileWithExpenses //: public FileXML
+class FileWithExpenses : public FileXML
 {
     int lastExpenseId;
 public:
-    //FileWithUsers(string nameFileWithUsers) : FileXML(nameFileWithUsers) {};
+    FileWithExpenses(string nameFileWithExpenses) : FileXML(nameFileWithExpenses) {
+    lastExpenseId = 0;
+    };
     void addExpenseToFile(Expense expense);
     vector <Expense> loadExpensesOfLoggedInUserFromFile(int loggedInUserId);
     int getLastExpenseId();
