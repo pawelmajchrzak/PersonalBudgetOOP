@@ -2,7 +2,9 @@
 #define WalletManager_h
 
 #include <iostream>
+#include <conio.h>
 #include <vector>
+#include <algorithm>
 
 #include "Income.h"
 #include "Expense.h"
@@ -19,10 +21,13 @@ class WalletManager {
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
 
+
     Income getNewIncomeData();
     Expense getNewExpenseData();
     int getUserId();
     int setDate();
+    //void sortVector(vector <Operation> &operations);
+
 
 public:
     WalletManager(string nameFileWithIncomes, string nameFileWithExpenses, int loggedInUserId)
@@ -39,6 +44,8 @@ public:
     void showBalanceForPreviousMonth();
     void showBalanceInSelectedPeriod();
 
+    void displayIncome(int incomeId);
+    void displayExpense(int expenseId);
 };
 
 #endif // WalletManager_h

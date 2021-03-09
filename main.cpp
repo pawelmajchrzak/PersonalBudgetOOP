@@ -9,7 +9,9 @@ int main()
     PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
     //personalBudget.registerUser();
     personalBudget.loginUser();
-    personalBudget.addIncome();
+    personalBudget.showBalanceForCurrentMonth();
+    //personalBudget.showIncoe();
+    //personalBudget.addIncome();
     //personalBudget.addExpense();
 }
 

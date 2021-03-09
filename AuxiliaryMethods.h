@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <ctime>
+#include <cmath>
 
 using namespace std;
 
@@ -27,7 +28,8 @@ public:
     static int loadCurrentDate();
     static bool compareDate(int date1, int date2);
     static int checkAndConvertDateToInteger(string date);
-
+    static float loadAmount();
+    static string convertDateToFormatyyyymmdd (int date);
 };
 
 

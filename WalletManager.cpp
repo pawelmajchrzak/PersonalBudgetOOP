@@ -19,6 +19,48 @@ void WalletManager::addExpense() {
 }
 
 void WalletManager::showBalanceForCurrentMonth() {
+    struct less_than_date {
+        inline bool operator() (Income struct1, Income struct2) {
+            return (struct1.getDate() < struct2.getDate());
+        }
+    };
+    struct less_than_dateExp {
+        inline bool operator() (Expense struct1, Expense struct2) {
+            return (struct1.getDate() < struct2.getDate());
+        }
+    };
+    sort(incomes.begin(), incomes.end(), less_than_date());
+    sort(expenses.begin(), expenses.end(), less_than_dateExp());
+
+    int date = AuxiliaryMethods::loadCurrentDate();
+    int minDate = date/100*100;
+    int maxDate = minDate+100;
+    float sumIncomes = 0;
+    float sumExpenses = 0;
+    system("cls");
+    cout << "    >>> Bilans " << date/10000 << "-" << minDate%10000/100 << " <<<" << endl << endl;
+    cout << "    >>> Przychody: <<<" << endl << endl;
+    for (int i = 0 ; i< incomes.size(); i++)
+        if ((incomes[i].getDate()>minDate)&&(incomes[i].getDate()<maxDate)) {
+            displayIncome(i);
+            sumIncomes += incomes[i].getAmount();
+        }
+    cout << "              Suma przychodow:   ";
+    printf("%.2f zl", sumIncomes);
+
+    cout << endl << endl << "    >>> Wydatki: <<<" << endl << endl;
+    for (int i = 0 ; i< expenses.size(); i++)
+        if ((expenses[i].getDate()>minDate)&&(expenses[i].getDate()<maxDate)) {
+            displayExpense(i);
+            sumExpenses += expenses[i].getAmount();
+        }
+    cout << "              Suma wydatkow:     ";
+    printf("%.2f zl", sumExpenses);
+    cout << endl << endl;
+    cout << "    >>> Bilans: <<<              ";
+    printf("%.2f zl", sumIncomes-sumExpenses);
+    cout << endl << endl;
+
 
 }
 
@@ -38,12 +80,12 @@ Income WalletManager::getNewIncomeData() {
 
     string item;
     cout << "Podaj nazwe przychodu: ";
-    cin >> item;
+    item = AuxiliaryMethods::loadLine();
     income.setItem(item);
 
     float amount;
     cout << "Podaj wysokosc przychodu: ";
-    cin >> amount;
+    amount = AuxiliaryMethods::loadAmount();
     income.setAmount(amount);
 
     return income;
@@ -58,12 +100,12 @@ Expense WalletManager::getNewExpenseData() {
 
     string item;
     cout << "Podaj nazwe przychodu: ";
-    cin >> item;
+    item = AuxiliaryMethods::loadLine();
     expense.setItem(item);
 
     float amount;
     cout << "Podaj wysokosc przychodu: ";
-    cin >> amount;
+    amount = AuxiliaryMethods::loadAmount();
     expense.setAmount(amount);
 
     return expense;
@@ -83,33 +125,50 @@ int WalletManager::setDate() {
     cout << "2. Nie" << endl;
     char select;
     int date = 0;
+
     while (date == 0) {
         select = AuxiliaryMethods::loadChar();
         switch (select) {
         case '1':
             date = AuxiliaryMethods::loadCurrentDate();
             break;
-        case '2':
-            string dateString = "";
-            while (true) {
-                cout << "Podaj date w formacie rrrr-mm-dd: ";
-                cin >> dateString;
-                date = AuxiliaryMethods::checkAndConvertDateToInteger(dateString);
-                if (date != 0)
-                    break;
-                else
-                    cout << "Bledna data lub jej format!";
+        case '2': {
+                string dateString = "";
+                while (true) {
+                    cout << "Podaj date w formacie rrrr-mm-dd: ";
+                    cin >> dateString;
+                    date = AuxiliaryMethods::checkAndConvertDateToInteger(dateString);
+                    if (date != 0)
+                        break;
+                    else
+                        cout << "Bledna data lub jej format!";
+                }
             }
             break;
-
-        //default: {
-         //   cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
-          //  system("pause");
-        //}
-        //    break;
-
-
+        default:
+            cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+            //system("pause");
+            break;
         }
     }
     return date;
 }
+
+
+void WalletManager::displayIncome(int incomeId) {
+    cout << AuxiliaryMethods::convertDateToFormatyyyymmdd (incomes[incomeId].getDate()) << " ";
+    cout << incomes[incomeId].getItem() << "    ";
+    printf("%.2f zl", incomes[incomeId].getAmount());
+    cout << endl;
+}
+
+void WalletManager::displayExpense(int expenseId) {
+    cout << AuxiliaryMethods::convertDateToFormatyyyymmdd (expenses[expenseId].getDate()) << " ";
+    cout << expenses[expenseId].getItem() << "    ";
+    printf("%.2f zl", expenses[expenseId].getAmount());
+    cout << endl;
+}
+
+//void WalletManager::sortVector(vector <Operation> &operations) {
+
+

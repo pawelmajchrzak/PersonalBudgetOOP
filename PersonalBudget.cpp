@@ -12,7 +12,6 @@ void PersonalBudget::loginUser() {
     if (userManager.isUserLoggedIn()) {
         walletManager = new WalletManager(FILE_NAME_WITH_INCOMES,FILE_NAME_WITH_EXPENSES,userManager.getLoggedInUserId());
     }
-
 }
 
 void PersonalBudget::changePassword() {
@@ -81,7 +80,7 @@ void PersonalBudget::addExpense() {
     if (userManager.isUserLoggedIn()) {
         walletManager->addExpense();
     } else {
-        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac" << endl;
+        cout << "Aby dodac wydatek, nalezy najpierw sie zalogowac" << endl;
         system ("pause");
     }
 }
@@ -90,4 +89,23 @@ void PersonalBudget::addExpense() {
 void PersonalBudget::showAllUsers() {
     userManager.showAllUsers();
 }
+
+void PersonalBudget::showBalanceForCurrentMonth() {
+    if (userManager.isUserLoggedIn()) {
+        walletManager->showBalanceForCurrentMonth();
+    } else {
+        cout << "Aby zobaczyæ bilans, nalezy najpierw sie zalogowac" << endl;
+        system ("pause");
+    }
+}
+
+void PersonalBudget::showIncoe() {
+    if (userManager.isUserLoggedIn()) {
+        walletManager->displayIncome(1);
+    } else {
+        cout << "Aby zobaczyæ bilans, nalezy najpierw sie zalogowac" << endl;
+        system ("pause");
+    }
+}
+
 

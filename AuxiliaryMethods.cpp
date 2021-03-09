@@ -158,13 +158,38 @@ int AuxiliaryMethods::checkAndConvertDateToInteger(string date) {
         return 0;
     if ((dayInt<1)||(dayInt>AuxiliaryMethods::daysInMonth(monthInt, yearInt)))
         return 0;
-    if (((monthInt>currentMonth)&&(yearInt==currentYear))||((yearInt==currentYear)&&(monthInt==currentMonth)&&(dayInt>currentDay)))
+    if (((monthInt>currentMonth)&&(yearInt==currentYear))||((yearInt==currentYear)&&(monthInt==currentMonth)))
         return 0;
     dateInt=yearInt*10000+monthInt*100+dayInt;
 
     return dateInt;
 }
 
+float AuxiliaryMethods::loadAmount() {
+    string enter = "";
+    float number = 0;
 
+    while (true) {
+        cin.clear();
+        cin.sync();
+        getline(cin, enter);
 
+        for (int i=0; i<=enter.length(); i++)
+            if (enter[i]==',')
+                enter.replace(i,1,".");
 
+        stringstream myStream(enter);
+        if (myStream >> number)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    number = round(number*100)/100;
+    return number;
+}
+
+string AuxiliaryMethods::convertDateToFormatyyyymmdd (int date) {
+    string dateString = convertIntegerToString(date);
+    dateString.insert(4,"-");
+    dateString.insert(7,"-");
+    return dateString;
+}
