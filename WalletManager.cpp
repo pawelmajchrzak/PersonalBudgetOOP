@@ -1,18 +1,18 @@
 #include "WalletManager.h"
 
 void WalletManager::addIncome() {
-    Income income = getNewIncomeData();
+    Operation income = getNewIncomeData();
     incomes.push_back(income);
-    fileWithIncomes.addIncomeToFile(income);
+    fileWithIncomes.addOperationToFile(income);
 
     cout << endl << "Przychod zostal dodany pomyslnie!" << endl << endl;
     system ("pause");
 }
 
 void WalletManager::addExpense() {
-    Expense expense = getNewExpenseData();
+    Operation expense = getNewExpenseData();
     expenses.push_back(expense);
-    fileWithExpenses.addExpenseToFile(expense);
+    fileWithExpenses.addOperationToFile(expense);
 
     cout << endl << "Wydatek zostal dodany pomyslnie!" << endl << endl;
     system ("pause");
@@ -20,17 +20,13 @@ void WalletManager::addExpense() {
 
 void WalletManager::showBalanceForCurrentMonth() {
     struct less_than_date {
-        inline bool operator() (Income struct1, Income struct2) {
+        inline bool operator() (Operation struct1, Operation struct2) {
             return (struct1.getDate() < struct2.getDate());
         }
     };
-    struct less_than_dateExp {
-        inline bool operator() (Expense struct1, Expense struct2) {
-            return (struct1.getDate() < struct2.getDate());
-        }
-    };
+
     sort(incomes.begin(), incomes.end(), less_than_date());
-    sort(expenses.begin(), expenses.end(), less_than_dateExp());
+    sort(expenses.begin(), expenses.end(), less_than_date());
 
     int date = AuxiliaryMethods::loadCurrentDate();
     int minDate = date/100*100;
@@ -72,9 +68,9 @@ void WalletManager::showBalanceInSelectedPeriod() {
 
 }
 
-Income WalletManager::getNewIncomeData() {
-    Income income;
-    income.setIncomeId(fileWithIncomes.getLastIncomeId()+1);
+Operation WalletManager::getNewIncomeData() {
+    Operation income;
+    income.setOperationId(fileWithIncomes.getLastOperationId()+1);
     income.setUserId(LOGGED_IN_USER_ID);
     income.setDate(setDate());
 
@@ -91,20 +87,20 @@ Income WalletManager::getNewIncomeData() {
     return income;
 }
 
-Expense WalletManager::getNewExpenseData() {
-    Expense expense;
+Operation WalletManager::getNewExpenseData() {
+    Operation expense;
 
-    expense.setExpenseId(fileWithExpenses.getLastExpenseId()+1);
+    expense.setOperationId(fileWithExpenses.getLastOperationId()+1);
     expense.setUserId(LOGGED_IN_USER_ID);
     expense.setDate(setDate());
 
     string item;
-    cout << "Podaj nazwe przychodu: ";
+    cout << "Podaj nazwe wydatku: ";
     item = AuxiliaryMethods::loadLine();
     expense.setItem(item);
 
     float amount;
-    cout << "Podaj wysokosc przychodu: ";
+    cout << "Podaj wysokosc wydatku: ";
     amount = AuxiliaryMethods::loadAmount();
     expense.setAmount(amount);
 
@@ -115,7 +111,7 @@ int WalletManager::getUserId() {
     if (expenses.empty() == true)
         return 1;
     else
-        return expenses.back().getExpenseId() + 1;
+        return expenses.back().getOperationId() + 1;
 }
 
 int WalletManager::setDate() {

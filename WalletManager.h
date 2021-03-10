@@ -6,24 +6,22 @@
 #include <vector>
 #include <algorithm>
 
-#include "Income.h"
-#include "Expense.h"
-#include "FileWithIncomes.h"
-#include "FileWithExpenses.h"
+#include "Operation.h"
+#include "FileWithOperations.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
 
 class WalletManager {
     const int LOGGED_IN_USER_ID;
-    vector <Income> incomes;
-    vector <Expense> expenses;
-    FileWithIncomes fileWithIncomes;
-    FileWithExpenses fileWithExpenses;
+    vector <Operation> incomes;
+    vector <Operation> expenses;
+    FileWithOperations fileWithIncomes;
+    FileWithOperations fileWithExpenses;
 
 
-    Income getNewIncomeData();
-    Expense getNewExpenseData();
+    Operation getNewIncomeData();
+    Operation getNewExpenseData();
     int getUserId();
     int setDate();
     //void sortVector(vector <Operation> &operations);
@@ -34,8 +32,8 @@ public:
         : fileWithIncomes(nameFileWithIncomes), fileWithExpenses(nameFileWithExpenses),
         LOGGED_IN_USER_ID(loggedInUserId)
     {
-        incomes = fileWithIncomes.loadIncomesOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
-        expenses = fileWithExpenses.loadExpensesOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
+        incomes = fileWithIncomes.loadOperationsOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
+        expenses = fileWithExpenses.loadOperationsOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
     };
 
     void addIncome();
