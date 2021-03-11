@@ -7,12 +7,24 @@ string AuxiliaryMethods::convertIntegerToString(int number) {
     return str;
 }
 
+string AuxiliaryMethods::convertFloatToString(float number) {
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
 int AuxiliaryMethods::convertStringToInteger(string number) {
     int numberInt;
     istringstream iss(number);
     iss >> numberInt;
-
     return numberInt;
+}
+
+float AuxiliaryMethods::convertStringToFloat(string number) {
+    float numberFloat;
+    numberFloat = atof(number.c_str());
+    return numberFloat;
 }
 
 string AuxiliaryMethods::changeFirstLetterForUpperCaseAndOthersForLowerCase(string text) {
@@ -26,10 +38,8 @@ string AuxiliaryMethods::changeFirstLetterForUpperCaseAndOthersForLowerCase(stri
 char AuxiliaryMethods::loadChar() {
     string enter = "";
     char character  = {0};
-
     while (true) {
         getline(cin, enter);
-
         if (enter.length() == 1) {
             character = enter[0];
             break;
@@ -42,10 +52,8 @@ char AuxiliaryMethods::loadChar() {
 int AuxiliaryMethods::loadInteger() {
     string enter = "";
     int number = 0;
-
     while (true) {
         getline(cin, enter);
-
         stringstream myStream(enter);
         if (myStream >> number)
             break;
@@ -100,14 +108,12 @@ int AuxiliaryMethods::daysInMonth(int month, int year) {
     case 12:
         daysInMonth = 31;
         break;
-
     case 4:
     case 6:
     case 9:
     case 11:
         daysInMonth = 30;
         break;
-
     case 2: {
         if (((year%4==0)&&(year%100!=0))||(year%400==0))
             daysInMonth = 29;
@@ -136,7 +142,6 @@ int AuxiliaryMethods::checkAndConvertDateToInteger(string date) {
     int dayInt = atoi(day.c_str());
 
     int currentDate = loadCurrentDate();
-    cout << currentDate <<endl;
     int currentYear = currentDate/10000;
     int currentMonth = (currentDate-currentYear*10000)/100;
     int currentDay = currentDate%100;
@@ -145,13 +150,50 @@ int AuxiliaryMethods::checkAndConvertDateToInteger(string date) {
         return 0;
     if ((dayInt<1)||(dayInt>AuxiliaryMethods::daysInMonth(monthInt, yearInt)))
         return 0;
-    if (((monthInt>currentMonth)&&(yearInt==currentYear))||((yearInt==currentYear)&&(monthInt==currentMonth)&&(dayInt>currentDay)))
+    if ((monthInt>currentMonth)&&(yearInt==currentYear))
         return 0;
     dateInt=yearInt*10000+monthInt*100+dayInt;
 
     return dateInt;
 }
 
+float AuxiliaryMethods::loadAmount() {
+    string enter = "";
+    float number = 0;
+    while (true) {
+        cin.clear();
+        cin.sync();
+        getline(cin, enter);
+        for (int i=0; i<=enter.length(); i++)
+            if (enter[i]==',')
+                enter.replace(i,1,".");
+        stringstream myStream(enter);
+        if (myStream >> number)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    number = round(number*100)/100;
+    return number;
+}
 
+string AuxiliaryMethods::convertDateToFormatyyyymmdd (int date) {
+    string dateString = convertIntegerToString(date);
+    dateString.insert(4,"-");
+    dateString.insert(7,"-");
+    return dateString;
+}
 
-
+int AuxiliaryMethods::loadDate() {
+    string dateSTRING = "2020-01-01";
+    int date = 0;
+    while (true) {
+        cout << "Podaj date w formacie rrrr-mm-dd: ";
+        cin >> dateSTRING;
+        date = AuxiliaryMethods::checkAndConvertDateToInteger(dateSTRING);
+        if (date != 0)
+            break;
+        else
+            cout << "Bledna data lub jej format!" << endl << endl;
+    }
+    return date;
+}

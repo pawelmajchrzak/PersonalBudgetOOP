@@ -74,6 +74,5 @@ void FileWithUsers::saveChangesToFileXML(int userNumber, string newPassword) {
     xml.FindElem();
     xml.FindElem();
     xml.SetData(newPassword);
-    cout << xml.GetData() << "ej to ja" << endl;
     xml.Save("users.xml");
 }

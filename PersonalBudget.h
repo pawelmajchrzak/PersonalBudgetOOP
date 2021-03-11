@@ -9,30 +9,25 @@
 
 using namespace std;
 
-class PersonalBudget
-{
+class PersonalBudget {
     UserManager userManager;
-    //WalletManager *walletManager;
+    WalletManager *walletManager;
     const string FILE_NAME_WITH_INCOMES;
     const string FILE_NAME_WITH_EXPENSES;
     int loggedInUserId;
 
 public:
 
-    PersonalBudget()
-    : loggedInUserId(0) {
-
-    }
-    /*
     PersonalBudget(string fileNameWithUsers, string fileNameWithIncomes, string fileNameWithExpenses)
-    : userManager(nameFileWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes), FILE_NAME_WITH_EXPENSES(fileNameWithExpenses), loggedInUserId(0) {
-    walletManager = NULL;
+        : userManager(fileNameWithUsers), FILE_NAME_WITH_INCOMES(fileNameWithIncomes), FILE_NAME_WITH_EXPENSES(fileNameWithExpenses), loggedInUserId(0) {
+        walletManager = NULL;
     };
+
     ~PersonalBudget() {
         delete walletManager;
         walletManager = NULL;
     };
-    */
+
     void registerUser();
     void loginUser();
 
@@ -48,8 +43,6 @@ public:
 
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();
-
-    void showAllUsers();
 };
 
 #endif // PersonalBudget_h

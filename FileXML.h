@@ -6,8 +6,7 @@
 
 using namespace std;
 
-class FileXML
-{
+class FileXML {
     const string FILE_NAME;
 
 public:

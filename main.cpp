@@ -4,21 +4,16 @@
 
 using namespace std;
 
-int main()
-{
-    //PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
-    PersonalBudget personalBudget;
+int main() {
+    PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
 
     char select;
 
-    while (true)
-    {
-        if (personalBudget.getLoggedInUserId() == 0)
-        {
+    while (true) {
+        if (personalBudget.getLoggedInUserId() == 0) {
             select = personalBudget.selectOptionFromMainMenu();
 
-            switch (select)
-            {
+            switch (select) {
             case '1':
                 personalBudget.registerUser();
                 break;
@@ -33,61 +28,34 @@ int main()
                 system("pause");
                 break;
             }
-        }
-        else
-        {
+        } else {
             select = personalBudget.selectOptionFromUserMenu();
 
-            switch (select)
-            {
-            /*
+            switch (select) {
+
             case '1':
-                personalBudget.dodajAdresata();
+                personalBudget.addIncome();
                 break;
             case '2':
-                personalBudget.wyszukajAdresatowPoImieniu();
+                personalBudget.addExpense();
                 break;
             case '3':
-                personalBudget.wyszukajAdresatowPoNazwisku();
+                personalBudget.showBalanceForCurrentMonth();
                 break;
             case '4':
-                personalBudget.wypiszWszystkichAdresatow();
+                personalBudget.showBalanceForPreviousMonth();
                 break;
             case '5':
-                personalBudget.usunAdresata();
+                personalBudget.showBalanceInSelectedPeriod();
                 break;
             case '6':
-                personalBudget.edytujAdresata();
-                break;
-            */
-            case '7':
                 personalBudget.changePassword();
                 break;
-            case '8':
+            case '7':
                 personalBudget.logoutUser();
                 break;
             }
         }
     }
-
-    //personalBudget.registerUser();
-    //personalBudget.loginUser();
-    //personalBudget.logoutUser();
-    //personalBudget.loginUser();
-    //personalBudget.changePassword();
-    //personalBudget.showAllUsers();
-
-
-
-
-    //checkAndConvertDate
-    //string date = "2020-03-04";
-    //int dateInt = AuxiliaryMethods::checkAndConvertDateToInteger(date);
-    //        if (dateInt!=0)
-    //    cout << dateInt << endl;
-    //else
-    //    cout << "Nie poprawna data lub jej format!" << endl;
-
-
     return 0;
 }

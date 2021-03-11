@@ -11,10 +11,10 @@
 
 using namespace std;
 
-class FileWithUsers //: public FileXML
+class FileWithUsers : public FileXML
 {
 public:
-    //FileWithUsers(string nameFileWithUsers) : FileXML(nameFileWithUsers) {};
+    FileWithUsers(string nameFileWithUsers) : FileXML(nameFileWithUsers) {};
     void addUserToFile(User user);
     vector <User> loadUsersFromFile();
     void saveChangesToFileXML(int userNumber, string newPassword);
