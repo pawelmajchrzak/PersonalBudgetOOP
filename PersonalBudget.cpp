@@ -53,6 +53,7 @@ char PersonalBudget::selectOptionFromUserMenu() {
     cout << "---------------------------" << endl;
     cout << "1. Dodaj przychod" << endl;
     cout << "2. Dodaj wydatek" << endl;
+    cout << "---------------------------" << endl;
     cout << "3. Bilans z biezacego miesiaca" << endl;
     cout << "4. Bilans z poprzedniego miesiaca" << endl;
     cout << "5. Bilans z wybranego okresu" << endl;
@@ -85,10 +86,6 @@ void PersonalBudget::addExpense() {
 }
 
 
-void PersonalBudget::showAllUsers() {
-    userManager.showAllUsers();
-}
-
 void PersonalBudget::showBalanceForCurrentMonth() {
     if (userManager.isUserLoggedIn()) {
         walletManager->showBalanceForCurrentMonth();
@@ -115,14 +112,3 @@ void PersonalBudget::showBalanceInSelectedPeriod() {
         system ("pause");
     }
 }
-
-void PersonalBudget::showIncoe() {
-    if (userManager.isUserLoggedIn()) {
-        walletManager->displayIncome(1);
-    } else {
-        cout << "Aby zobaczyæ bilans, nalezy najpierw sie zalogowac" << endl;
-        system ("pause");
-    }
-}
-
-

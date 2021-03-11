@@ -1,7 +1,6 @@
 #ifndef AuxiliaryMethods_h
 #define AuxiliaryMethods_h
 
-
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -11,8 +10,7 @@
 
 using namespace std;
 
-class AuxiliaryMethods
-{
+class AuxiliaryMethods {
 
 public:
     static string convertIntegerToString(int number);
@@ -32,6 +30,5 @@ public:
     static int loadDate();
     static int daysInMonth(int month, int year);
 };
-
 
 #endif // AuxiliaryMethods_h

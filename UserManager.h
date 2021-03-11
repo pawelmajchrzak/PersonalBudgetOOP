@@ -31,8 +31,6 @@ public:
     void logoutUser();
     bool isUserLoggedIn();
     int getLoggedInUserId();
-
-    void showAllUsers();
 };
 
 #endif // UserManager_h

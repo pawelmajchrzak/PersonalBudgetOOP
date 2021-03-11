@@ -4,34 +4,16 @@
 
 using namespace std;
 
-int maink()
-{
-    PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
-    //personalBudget.registerUser();
-    personalBudget.loginUser();
-    personalBudget.showBalanceForCurrentMonth();
-    //personalBudget.showBalanceInSelectedPeriod();
-    personalBudget.showBalanceForPreviousMonth();
-    //personalBudget.showIncoe();
-    //personalBudget.addIncome();
-    //personalBudget.addExpense();
-}
-
-
-int main()
-{
+int main() {
     PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
 
     char select;
 
-    while (true)
-    {
-        if (personalBudget.getLoggedInUserId() == 0)
-        {
+    while (true) {
+        if (personalBudget.getLoggedInUserId() == 0) {
             select = personalBudget.selectOptionFromMainMenu();
 
-            switch (select)
-            {
+            switch (select) {
             case '1':
                 personalBudget.registerUser();
                 break;
@@ -46,13 +28,10 @@ int main()
                 system("pause");
                 break;
             }
-        }
-        else
-        {
+        } else {
             select = personalBudget.selectOptionFromUserMenu();
 
-            switch (select)
-            {
+            switch (select) {
 
             case '1':
                 personalBudget.addIncome();
@@ -78,25 +57,5 @@ int main()
             }
         }
     }
-
-    //personalBudget.registerUser();
-    //personalBudget.loginUser();
-    //personalBudget.logoutUser();
-    //personalBudget.loginUser();
-    //personalBudget.changePassword();
-    //personalBudget.showAllUsers();
-
-
-
-
-    //checkAndConvertDate
-    //string date = "2020-03-04";
-    //int dateInt = AuxiliaryMethods::checkAndConvertDateToInteger(date);
-    //        if (dateInt!=0)
-    //    cout << dateInt << endl;
-    //else
-    //    cout << "Nie poprawna data lub jej format!" << endl;
-
-
     return 0;
 }

@@ -11,12 +11,11 @@
 
 using namespace std;
 
-class FileWithOperations : public FileXML
-{
+class FileWithOperations : public FileXML {
     int lastOperationId;
 public:
     FileWithOperations(string nameFileWithOperations) : FileXML(nameFileWithOperations) {
-    lastOperationId = 0;
+        lastOperationId = 0;
     };
     void addOperationToFile(Operation operation);
     vector <Operation> loadOperationsOfLoggedInUserFromFile(int loggedInUserId);

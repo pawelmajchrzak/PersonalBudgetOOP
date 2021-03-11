@@ -6,7 +6,6 @@ void WalletManager::addIncome() {
     Operation income = getNewIncomeData();
     incomes.push_back(income);
     fileWithIncomes.addOperationToFile(income);
-
     cout << endl << "Przychod zostal dodany pomyslnie!" << endl << endl;
     system ("pause");
 }
@@ -17,7 +16,6 @@ void WalletManager::addExpense() {
     Operation expense = getNewExpenseData();
     expenses.push_back(expense);
     fileWithExpenses.addOperationToFile(expense);
-
     cout << endl << "Wydatek zostal dodany pomyslnie!" << endl << endl;
     system ("pause");
 }
@@ -54,37 +52,30 @@ Operation WalletManager::getNewIncomeData() {
     income.setOperationId(fileWithIncomes.getLastOperationId()+1);
     income.setUserId(LOGGED_IN_USER_ID);
     income.setDate(setDate());
-
     string item;
     cout << endl << "Podaj nazwe przychodu: ";
     item = AuxiliaryMethods::loadLine();
     income.setItem(item);
-
     float amount;
     cout << "Podaj wysokosc przychodu: ";
     amount = AuxiliaryMethods::loadAmount();
     income.setAmount(amount);
-
     return income;
 }
 
 Operation WalletManager::getNewExpenseData() {
     Operation expense;
-
     expense.setOperationId(fileWithExpenses.getLastOperationId()+1);
     expense.setUserId(LOGGED_IN_USER_ID);
     expense.setDate(setDate());
-
     string item;
     cout << endl << "Podaj nazwe wydatku: ";
     item = AuxiliaryMethods::loadLine();
     expense.setItem(item);
-
     float amount;
     cout << "Podaj wysokosc wydatku: ";
     amount = AuxiliaryMethods::loadAmount();
     expense.setAmount(amount);
-
     return expense;
 }
 
@@ -101,7 +92,6 @@ int WalletManager::setDate() {
     cout << "2. Nie" << endl << endl;
     char select;
     int date = 0;
-
     while (date == 0) {
         select = AuxiliaryMethods::loadChar();
         switch (select) {
@@ -113,13 +103,11 @@ int WalletManager::setDate() {
             break;
         default:
             cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
-            //system("pause");
             break;
         }
     }
     return date;
 }
-
 
 void WalletManager::displayIncome(int incomeId) {
     cout << AuxiliaryMethods::convertDateToFormatyyyymmdd (incomes[incomeId].getDate()) << " ";

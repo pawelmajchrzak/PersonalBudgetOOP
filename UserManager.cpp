@@ -4,10 +4,8 @@ void UserManager::registerUser() {
     system ("cls");
     cout << "    >>> Rejestacja <<<" << endl << endl;
     User user = getNewUserData();
-
     users.push_back(user);
     fileWithUsers.addUserToFile(user);
-
     cout << endl << "Konto zalozono pomyslnie!" << endl << endl;
     system("pause");
 }
@@ -48,10 +46,8 @@ void UserManager::changePassword() {
     cout << "Podaj nowe haslo: ";
     newPassword = AuxiliaryMethods::loadLine();
 
-    for (int i = 0 ; i< users.size(); i++)
-    {
-        if (users[i].getId() == loggedInUserId)
-        {
+    for (int i = 0 ; i< users.size(); i++) {
+        if (users[i].getId() == loggedInUserId) {
             users[i].setPassword(newPassword);
             cout << "Haslo zostalo zmienione." << endl << endl;
             fileWithUsers.saveChangesToFileXML(i,newPassword);
@@ -103,7 +99,6 @@ User UserManager::getNewUserData() {
     user.setSurname(surname);
 
     return user;
-
 }
 
 int UserManager::getNewUserId() {
@@ -121,14 +116,4 @@ bool UserManager::isThereALoginExisting(string login) {
         }
     }
     return false;
-}
-
-void UserManager::showAllUsers() {
-    for (int i = 0 ; i< users.size(); i++) {
-        cout << users[i].getId() << endl;
-        cout << users[i].getLogin() << endl;
-        cout << users[i].getPassword() << endl;
-        cout << users[i].getName() << endl;
-        cout << users[i].getSurname() << endl;
-    }
 }

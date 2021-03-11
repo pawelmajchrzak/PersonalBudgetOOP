@@ -33,7 +33,6 @@ vector <Operation>  FileWithOperations::loadOperationsOfLoggedInUserFromFile(int
     xml.FindElem();
     xml.IntoElem();
     while (xml.FindElem()) {
-
         xml.IntoElem();
         xml.FindElem();
         int operationId = AuxiliaryMethods::convertStringToInteger(xml.GetData());
@@ -48,18 +47,17 @@ vector <Operation>  FileWithOperations::loadOperationsOfLoggedInUserFromFile(int
         xml.OutOfElem();
         lastOperationId = operationId;
         if (loggedInUserId == userId) {
-        operation.setOperationId(operationId);
-        operation.setUserId(userId);
-        operation.setDate(date);
-        operation.setItem(item);
-        operation.setAmount(amount);
-        operations.push_back(operation);
+            operation.setOperationId(operationId);
+            operation.setUserId(userId);
+            operation.setDate(date);
+            operation.setItem(item);
+            operation.setAmount(amount);
+            operations.push_back(operation);
         }
     }
     return operations;
 }
 
-int FileWithOperations::getLastOperationId()
-{
+int FileWithOperations::getLastOperationId() {
     return lastOperationId;
 }

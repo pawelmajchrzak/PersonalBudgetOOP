@@ -18,7 +18,6 @@ int AuxiliaryMethods::convertStringToInteger(string number) {
     int numberInt;
     istringstream iss(number);
     iss >> numberInt;
-
     return numberInt;
 }
 
@@ -39,10 +38,8 @@ string AuxiliaryMethods::changeFirstLetterForUpperCaseAndOthersForLowerCase(stri
 char AuxiliaryMethods::loadChar() {
     string enter = "";
     char character  = {0};
-
     while (true) {
         getline(cin, enter);
-
         if (enter.length() == 1) {
             character = enter[0];
             break;
@@ -55,10 +52,8 @@ char AuxiliaryMethods::loadChar() {
 int AuxiliaryMethods::loadInteger() {
     string enter = "";
     int number = 0;
-
     while (true) {
         getline(cin, enter);
-
         stringstream myStream(enter);
         if (myStream >> number)
             break;
@@ -113,14 +108,12 @@ int AuxiliaryMethods::daysInMonth(int month, int year) {
     case 12:
         daysInMonth = 31;
         break;
-
     case 4:
     case 6:
     case 9:
     case 11:
         daysInMonth = 30;
         break;
-
     case 2: {
         if (((year%4==0)&&(year%100!=0))||(year%400==0))
             daysInMonth = 29;
@@ -167,16 +160,13 @@ int AuxiliaryMethods::checkAndConvertDateToInteger(string date) {
 float AuxiliaryMethods::loadAmount() {
     string enter = "";
     float number = 0;
-
     while (true) {
         cin.clear();
         cin.sync();
         getline(cin, enter);
-
         for (int i=0; i<=enter.length(); i++)
             if (enter[i]==',')
                 enter.replace(i,1,".");
-
         stringstream myStream(enter);
         if (myStream >> number)
             break;
