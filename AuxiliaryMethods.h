@@ -13,7 +13,6 @@ using namespace std;
 
 class AuxiliaryMethods
 {
-    static int daysInMonth(int month, int year);
 
 public:
     static string convertIntegerToString(int number);
@@ -31,6 +30,7 @@ public:
     static float loadAmount();
     static string convertDateToFormatyyyymmdd (int date);
     static int loadDate();
+    static int daysInMonth(int month, int year);
 };
 
 

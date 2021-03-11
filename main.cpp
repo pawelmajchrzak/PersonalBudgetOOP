@@ -4,20 +4,21 @@
 
 using namespace std;
 
-int main()
+int maink()
 {
     PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
     //personalBudget.registerUser();
     personalBudget.loginUser();
-    //personalBudget.showBalanceForCurrentMonth();
-    personalBudget.showBalanceInSelectedPeriod();
+    personalBudget.showBalanceForCurrentMonth();
+    //personalBudget.showBalanceInSelectedPeriod();
+    personalBudget.showBalanceForPreviousMonth();
     //personalBudget.showIncoe();
     //personalBudget.addIncome();
     //personalBudget.addExpense();
 }
 
 
-int maink()
+int main()
 {
     PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
     //PersonalBudget personalBudget;

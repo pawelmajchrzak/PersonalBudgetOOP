@@ -19,16 +19,21 @@ void WalletManager::addExpense() {
 }
 
 void WalletManager::showBalanceForCurrentMonth() {
-
-
     int date = AuxiliaryMethods::loadCurrentDate();
-    int minDate = date/100*100;
-    int maxDate = minDate+100;
-    //showBalance(beginningOfPeriod, endOfPeriod);
+    int beginningOfPeriod = date/100*100+1;
+    int endOfPeriod = beginningOfPeriod + AuxiliaryMethods::daysInMonth(date%10000/100, date/10000) - 1;
+    showBalance(beginningOfPeriod,endOfPeriod);
 }
 
 void WalletManager::showBalanceForPreviousMonth() {
-
+    int dateCurrent = AuxiliaryMethods::loadCurrentDate();
+    int date = 0;
+    if (dateCurrent%10000/100 != 12)
+        date = dateCurrent-100;
+    else date = dateCurrent-10000+1100;
+    int beginningOfPeriod = date/100*100+1;
+    int endOfPeriod = beginningOfPeriod + AuxiliaryMethods::daysInMonth(date%10000/100, date/10000) - 1;
+    showBalance(beginningOfPeriod,endOfPeriod);
 }
 
 void WalletManager::showBalanceInSelectedPeriod() {
@@ -161,4 +166,5 @@ void WalletManager::showBalance(int beginningOfPeriod, int endOfPeriod) {
     cout << "    >>> Bilans: <<<              ";
     printf("%.2f zl", sumIncomes-sumExpenses);
     cout << endl << endl;
+    system ("pause");
 }
