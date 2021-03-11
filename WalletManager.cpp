@@ -1,6 +1,8 @@
 #include "WalletManager.h"
 
 void WalletManager::addIncome() {
+    system ("cls");
+    cout << "    >>> Dodawania przychodu <<<" << endl << endl;
     Operation income = getNewIncomeData();
     incomes.push_back(income);
     fileWithIncomes.addOperationToFile(income);
@@ -10,6 +12,8 @@ void WalletManager::addIncome() {
 }
 
 void WalletManager::addExpense() {
+    system ("cls");
+    cout << "    >>> Dodawania wydatku <<<" << endl << endl;
     Operation expense = getNewExpenseData();
     expenses.push_back(expense);
     fileWithExpenses.addOperationToFile(expense);
@@ -52,7 +56,7 @@ Operation WalletManager::getNewIncomeData() {
     income.setDate(setDate());
 
     string item;
-    cout << "Podaj nazwe przychodu: ";
+    cout << endl << "Podaj nazwe przychodu: ";
     item = AuxiliaryMethods::loadLine();
     income.setItem(item);
 
@@ -72,7 +76,7 @@ Operation WalletManager::getNewExpenseData() {
     expense.setDate(setDate());
 
     string item;
-    cout << "Podaj nazwe wydatku: ";
+    cout << endl << "Podaj nazwe wydatku: ";
     item = AuxiliaryMethods::loadLine();
     expense.setItem(item);
 
@@ -92,10 +96,9 @@ int WalletManager::getUserId() {
 }
 
 int WalletManager::setDate() {
-    system("cls");
     cout << "Czy przychod dotyczy dzisiejszego dnia?" << endl << endl;
     cout << "1. Tak" << endl;
-    cout << "2. Nie" << endl;
+    cout << "2. Nie" << endl << endl;
     char select;
     int date = 0;
 

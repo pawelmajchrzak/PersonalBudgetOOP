@@ -21,7 +21,6 @@ int maink()
 int main()
 {
     PersonalBudget personalBudget("Users.xml","Incomes.xml","Expenses.xml");
-    //PersonalBudget personalBudget;
 
     char select;
 
@@ -54,30 +53,26 @@ int main()
 
             switch (select)
             {
-            /*
+
             case '1':
-                personalBudget.dodajAdresata();
+                personalBudget.addIncome();
                 break;
             case '2':
-                personalBudget.wyszukajAdresatowPoImieniu();
+                personalBudget.addExpense();
                 break;
             case '3':
-                personalBudget.wyszukajAdresatowPoNazwisku();
+                personalBudget.showBalanceForCurrentMonth();
                 break;
             case '4':
-                personalBudget.wypiszWszystkichAdresatow();
+                personalBudget.showBalanceForPreviousMonth();
                 break;
             case '5':
-                personalBudget.usunAdresata();
+                personalBudget.showBalanceInSelectedPeriod();
                 break;
             case '6':
-                personalBudget.edytujAdresata();
-                break;
-            */
-            case '7':
                 personalBudget.changePassword();
                 break;
-            case '8':
+            case '7':
                 personalBudget.logoutUser();
                 break;
             }

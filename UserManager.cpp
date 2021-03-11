@@ -1,6 +1,8 @@
 #include "UserManager.h"
 
 void UserManager::registerUser() {
+    system ("cls");
+    cout << "    >>> Rejestacja <<<" << endl << endl;
     User user = getNewUserData();
 
     users.push_back(user);
@@ -11,6 +13,8 @@ void UserManager::registerUser() {
 }
 
 void UserManager::loginUser() {
+    system ("cls");
+    cout << "    >>> Logowanie <<<" << endl << endl;
     string login = "", password = "";
 
     cout << "Podaj login: ";
