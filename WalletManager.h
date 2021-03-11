@@ -24,8 +24,8 @@ class WalletManager {
     Operation getNewExpenseData();
     int getUserId();
     int setDate();
-    //void sortVector(vector <Operation> &operations);
-
+    void showBalance(int beginningOfPeriod, int endOfPeriod);
+    //vector <Operation> sortVector(vector <Operation> vec);
 
 public:
     WalletManager(string nameFileWithIncomes, string nameFileWithExpenses, int loggedInUserId)

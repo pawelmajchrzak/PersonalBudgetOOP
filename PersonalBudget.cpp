@@ -94,7 +94,25 @@ void PersonalBudget::showBalanceForCurrentMonth() {
     if (userManager.isUserLoggedIn()) {
         walletManager->showBalanceForCurrentMonth();
     } else {
-        cout << "Aby zobaczyæ bilans, nalezy najpierw sie zalogowac" << endl;
+        cout << "Aby zobaczyc bilans, nalezy najpierw sie zalogowac" << endl;
+        system ("pause");
+    }
+}
+
+void PersonalBudget::showBalanceForPreviousMonth() {
+    if (userManager.isUserLoggedIn()) {
+        walletManager->showBalanceForPreviousMonth();
+    } else {
+        cout << "Aby zobaczyc bilans, nalezy najpierw sie zalogowac" << endl;
+        system ("pause");
+    }
+}
+
+void PersonalBudget::showBalanceInSelectedPeriod() {
+    if (userManager.isUserLoggedIn()) {
+        walletManager->showBalanceInSelectedPeriod();
+    } else {
+        cout << "Aby zobaczyc bilans, nalezy najpierw sie zalogowac" << endl;
         system ("pause");
     }
 }

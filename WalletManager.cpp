@@ -19,45 +19,12 @@ void WalletManager::addExpense() {
 }
 
 void WalletManager::showBalanceForCurrentMonth() {
-    struct less_than_date {
-        inline bool operator() (Operation struct1, Operation struct2) {
-            return (struct1.getDate() < struct2.getDate());
-        }
-    };
 
-    sort(incomes.begin(), incomes.end(), less_than_date());
-    sort(expenses.begin(), expenses.end(), less_than_date());
 
     int date = AuxiliaryMethods::loadCurrentDate();
     int minDate = date/100*100;
     int maxDate = minDate+100;
-    float sumIncomes = 0;
-    float sumExpenses = 0;
-    system("cls");
-    cout << "    >>> Bilans " << date/10000 << "-" << minDate%10000/100 << " <<<" << endl << endl;
-    cout << "    >>> Przychody: <<<" << endl << endl;
-    for (int i = 0 ; i< incomes.size(); i++)
-        if ((incomes[i].getDate()>minDate)&&(incomes[i].getDate()<maxDate)) {
-            displayIncome(i);
-            sumIncomes += incomes[i].getAmount();
-        }
-    cout << "              Suma przychodow:   ";
-    printf("%.2f zl", sumIncomes);
-
-    cout << endl << endl << "    >>> Wydatki: <<<" << endl << endl;
-    for (int i = 0 ; i< expenses.size(); i++)
-        if ((expenses[i].getDate()>minDate)&&(expenses[i].getDate()<maxDate)) {
-            displayExpense(i);
-            sumExpenses += expenses[i].getAmount();
-        }
-    cout << "              Suma wydatkow:     ";
-    printf("%.2f zl", sumExpenses);
-    cout << endl << endl;
-    cout << "    >>> Bilans: <<<              ";
-    printf("%.2f zl", sumIncomes-sumExpenses);
-    cout << endl << endl;
-
-
+    //showBalance(beginningOfPeriod, endOfPeriod);
 }
 
 void WalletManager::showBalanceForPreviousMonth() {
@@ -65,7 +32,12 @@ void WalletManager::showBalanceForPreviousMonth() {
 }
 
 void WalletManager::showBalanceInSelectedPeriod() {
-
+    system ("cls");
+    cout << "Data poczatku okresu" << endl;
+    int beginningOfPeriod = AuxiliaryMethods::loadDate();
+    cout << endl << "Data konca okresu" << endl;
+    int endOfPeriod = AuxiliaryMethods::loadDate();
+    showBalance(beginningOfPeriod,endOfPeriod);
 }
 
 Operation WalletManager::getNewIncomeData() {
@@ -128,18 +100,8 @@ int WalletManager::setDate() {
         case '1':
             date = AuxiliaryMethods::loadCurrentDate();
             break;
-        case '2': {
-                string dateString = "";
-                while (true) {
-                    cout << "Podaj date w formacie rrrr-mm-dd: ";
-                    cin >> dateString;
-                    date = AuxiliaryMethods::checkAndConvertDateToInteger(dateString);
-                    if (date != 0)
-                        break;
-                    else
-                        cout << "Bledna data lub jej format!";
-                }
-            }
+        case '2':
+            date = AuxiliaryMethods::loadDate();
             break;
         default:
             cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
@@ -165,6 +127,38 @@ void WalletManager::displayExpense(int expenseId) {
     cout << endl;
 }
 
-//void WalletManager::sortVector(vector <Operation> &operations) {
+void WalletManager::showBalance(int beginningOfPeriod, int endOfPeriod) {
+    struct less_than_date {
+        inline bool operator() (Operation struct1, Operation struct2) {
+            return (struct1.getDate() < struct2.getDate());
+        }
+    };
+    sort(incomes.begin(), incomes.end(), less_than_date());
+    sort(expenses.begin(), expenses.end(), less_than_date());
 
+    float sumIncomes = 0;
+    float sumExpenses = 0;
+    system("cls");
+    cout << "    >>> Bilans " << AuxiliaryMethods::convertDateToFormatyyyymmdd(beginningOfPeriod) << " - " << AuxiliaryMethods::convertDateToFormatyyyymmdd(endOfPeriod) << " <<<" << endl << endl;
+    cout << "    >>> Przychody: <<<" << endl << endl;
+    for (int i = 0 ; i< incomes.size(); i++)
+        if ((incomes[i].getDate()>=beginningOfPeriod)&&(incomes[i].getDate()<=endOfPeriod)) {
+            displayIncome(i);
+            sumIncomes += incomes[i].getAmount();
+        }
+    cout << "              Suma przychodow:   ";
+    printf("%.2f zl", sumIncomes);
 
+    cout << endl << endl << "    >>> Wydatki: <<<" << endl << endl;
+    for (int i = 0 ; i< expenses.size(); i++)
+        if ((expenses[i].getDate()>=beginningOfPeriod)&&(expenses[i].getDate()<=endOfPeriod)) {
+            displayExpense(i);
+            sumExpenses += expenses[i].getAmount();
+        }
+    cout << "              Suma wydatkow:     ";
+    printf("%.2f zl", sumExpenses);
+    cout << endl << endl;
+    cout << "    >>> Bilans: <<<              ";
+    printf("%.2f zl", sumIncomes-sumExpenses);
+    cout << endl << endl;
+}

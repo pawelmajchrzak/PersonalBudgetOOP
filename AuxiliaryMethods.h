@@ -30,6 +30,7 @@ public:
     static int checkAndConvertDateToInteger(string date);
     static float loadAmount();
     static string convertDateToFormatyyyymmdd (int date);
+    static int loadDate();
 };
 
 

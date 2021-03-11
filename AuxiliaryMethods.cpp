@@ -149,7 +149,6 @@ int AuxiliaryMethods::checkAndConvertDateToInteger(string date) {
     int dayInt = atoi(day.c_str());
 
     int currentDate = loadCurrentDate();
-    cout << currentDate <<endl;
     int currentYear = currentDate/10000;
     int currentMonth = (currentDate-currentYear*10000)/100;
     int currentDay = currentDate%100;
@@ -158,7 +157,7 @@ int AuxiliaryMethods::checkAndConvertDateToInteger(string date) {
         return 0;
     if ((dayInt<1)||(dayInt>AuxiliaryMethods::daysInMonth(monthInt, yearInt)))
         return 0;
-    if (((monthInt>currentMonth)&&(yearInt==currentYear))||((yearInt==currentYear)&&(monthInt==currentMonth)))
+    if ((monthInt>currentMonth)&&(yearInt==currentYear))
         return 0;
     dateInt=yearInt*10000+monthInt*100+dayInt;
 
@@ -192,4 +191,19 @@ string AuxiliaryMethods::convertDateToFormatyyyymmdd (int date) {
     dateString.insert(4,"-");
     dateString.insert(7,"-");
     return dateString;
+}
+
+int AuxiliaryMethods::loadDate() {
+    string dateSTRING = "2020-01-01";
+    int date = 0;
+    while (true) {
+        cout << "Podaj date w formacie rrrr-mm-dd: ";
+        cin >> dateSTRING;
+        date = AuxiliaryMethods::checkAndConvertDateToInteger(dateSTRING);
+        if (date != 0)
+            break;
+        else
+            cout << "Bledna data lub jej format!" << endl << endl;
+    }
+    return date;
 }
